@@ -1,5 +1,5 @@
 <div class="progress">
-    <div class="progress-track"></div>
+    <div class="progress-track" [style.width]="progressWidth" [style.left]="progressLeft"></div>
         
     <div *ngFor="let step of steps" class="{{step.classes}}">
         {{step.label}}

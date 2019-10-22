@@ -9,12 +9,21 @@ export class StepperProgressBarComponent implements OnInit {
 
   constructor() {
   }
+  progressLeft:string;
+  progressWidth:string;
 
   ngOnInit() {
     console.log("init");
     if(this.controller != null){
       this.controller.setParent(this);
     } else console.log("didn't set parent!");
+    if(this.steps.length > 0){
+      this.progressWidth = (100 - (100/this.steps.length)) +"%";
+      this.progressLeft =  ((100/this.steps.length)/2) +"%";
+    } else {
+      this.progressWidth = "100%";
+      this.progressLeft =  "50%";
+    }
   }
 
   @Input() steps:Step[];
