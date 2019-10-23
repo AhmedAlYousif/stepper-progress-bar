@@ -55,3 +55,15 @@ import { Step, StepperProgressBarController } from 'stepper-progress-bar';
         this.progressStepper.previousStep();
     }
 ```
+
+You can now have a vertical stepper progress bar:
+
+in the html:
+```html
+    <lib-stepperProgressBar [isVertical]="isVertical" [controller]="progressStepper" [steps]="steps"></lib-stepperProgressBar>
+```
+
+in .TS
+```javascript
+  isVertical=true;
+```

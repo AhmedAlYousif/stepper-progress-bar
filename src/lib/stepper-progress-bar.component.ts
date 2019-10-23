@@ -11,23 +11,42 @@ export class StepperProgressBarComponent implements OnInit {
   }
   progressLeft:string;
   progressWidth:string;
+  progressHeight:string;
+
+  displayStyle:string = "flex";
+
+  additionalStepsClass:string = "";
 
   ngOnInit() {
     console.log("init");
     if(this.controller != null){
       this.controller.setParent(this);
     } else console.log("didn't set parent!");
-    if(this.steps.length > 0){
-      this.progressWidth = (100 - (100/this.steps.length)) +"%";
-      this.progressLeft =  ((100/this.steps.length)/2) +"%";
-    } else {
-      this.progressWidth = "100%";
+    
+    if(this.isVertical){
+      this.additionalStepsClass = " vertical "
+      this.displayStyle = "grid";
+      if(this.steps.length > 0)
+        this.progressHeight = (100 - (100/this.steps.length)) +"%";
+       else 
+        this.progressHeight = "100%";      
       this.progressLeft =  "50%";
+      this.progressWidth = "6px";
+    } else {
+      this.progressHeight = "6px";
+      if(this.steps.length > 0){
+        this.progressWidth = (100 - (100/this.steps.length)) +"%";
+        this.progressLeft =  ((100/this.steps.length)/2) +"%";
+      } else {
+        this.progressWidth = "100%";
+        this.progressLeft =  "50%";
+      }
     }
   }
 
   @Input() steps:Step[];
   @Input() controller:StepperProgressBarController;
+  @Input() isVertical:boolean;
 
   private currentStep = -1;
   nextStep(){
