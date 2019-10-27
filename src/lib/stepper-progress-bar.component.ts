@@ -12,6 +12,7 @@ export class StepperProgressBarComponent implements OnInit {
   progressLeft:string;
   progressWidth:string;
   progressHeight:string;
+  progressTranslate:string;
 
   displayStyle:string = "flex";
 
@@ -32,8 +33,10 @@ export class StepperProgressBarComponent implements OnInit {
         this.progressHeight = "100%";      
       this.progressLeft =  "50%";
       this.progressWidth = "6px";
+      this.progressTranslate = "translateX(-3px)";
     } else {
       this.progressHeight = "6px";
+      this.progressTranslate = "translateX(0px)";
       if(this.steps.length > 0){
         this.progressWidth = (100 - (100/this.steps.length)) +"%";
         this.progressLeft =  ((100/this.steps.length)/2) +"%";
